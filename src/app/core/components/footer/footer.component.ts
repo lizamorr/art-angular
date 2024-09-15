@@ -4,11 +4,7 @@ import { Component } from '@angular/core';
   selector: 'core-footer',
   standalone: true,
   imports: [],
-  template: `<footer
-    class="cursor-pointer relative bottom-0 left-0 mt-auto p-2 z-10 w-full flex justify-center tracking-wider"
-  >
-    <a href="{{ githubLink }}" target="_blank">© Liza Morrison {{ year }}</a>
-  </footer> `,
+  templateUrl: './footer.component.html',
 })
 export class FooterComponent {
   public githubLink = 'https://github.com/lizamorr/artwork-website';
