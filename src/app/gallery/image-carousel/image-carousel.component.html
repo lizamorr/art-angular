@@ -1,7 +1,8 @@
 <div
   class="relative w-full flex items-center justify-center"
-  (swipeleft)="nextSlide()"
-  (swiperight)="prevSlide()"
+  (touchstart)="onTouchStart($event)"
+  (touchmove)="onTouchMove($event)"
+  (touchend)="onTouchEnd()"
 >
   <button
     mat-icon-button
