@@ -8,10 +8,6 @@ import { HeaderComponent } from './core/components/header/header.component';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, FooterComponent, HeaderComponent],
-  template: `<div class="flex flex-col h-screen">
-    <core-header class="flex-shrink-0" /><router-outlet
-      class="flex-grow"
-    /><core-footer class="flex-shrink-0" />
-  </div>`,
+  templateUrl: './app.component.html',
 })
 export class AppComponent {}

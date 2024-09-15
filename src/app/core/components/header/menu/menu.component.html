@@ -3,13 +3,22 @@
     mat-icon-button
     [matMenuTriggerFor]="menu"
     aria-label="Menu more button"
+    data-testid="menu-button"
   >
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="">Home</button>
-    <button mat-menu-item routerLink="gallery">Gallery</button>
-    <button mat-menu-item routerLink="contact">Contact</button>
-    <button mat-menu-item routerLink="about">About</button>
+    <button mat-menu-item routerLink="" data-testid="menu-item-home">
+      Home
+    </button>
+    <button mat-menu-item routerLink="gallery" data-testid="menu-item-gallery">
+      Gallery
+    </button>
+    <button mat-menu-item routerLink="contact" data-testid="menu-item-contact">
+      Contact
+    </button>
+    <button mat-menu-item routerLink="about" data-testid="menu-item-about">
+      About
+    </button>
   </mat-menu>
 </div>

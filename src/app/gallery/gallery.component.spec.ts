@@ -1,9 +1,15 @@
+import { CommonModule } from '@angular/common';
 import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 
 import { GalleryComponent } from './gallery.component';
+import {
+  ImageCarouselComponent,
+} from './image-carousel/image-carousel.component';
+import { TypeToggleComponent } from './type-toggle.component';
 
 describe('GalleryComponent', () => {
   let component: GalleryComponent;
@@ -11,7 +17,13 @@ describe('GalleryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GalleryComponent],
+      imports: [
+        GalleryComponent,
+        CommonModule,
+        MatIconModule,
+        TypeToggleComponent,
+        ImageCarouselComponent,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GalleryComponent);
