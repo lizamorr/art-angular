@@ -22,16 +22,16 @@ export class ImageCarouselComponent {
     return this.group()[this.currentIndex];
   }
 
-  public nextSlide() {
+  public goToNextImage() {
     this.currentIndex = (this.currentIndex + 1) % this.group().length;
   }
 
-  public prevSlide() {
+  public goToPrevImage() {
     this.currentIndex =
       (this.currentIndex - 1 + this.group().length) % this.group().length;
   }
 
-  public goToSlide(index: number) {
+  public goToImage(index: number) {
     this.currentIndex = index;
   }
 
@@ -47,9 +47,9 @@ export class ImageCarouselComponent {
     const deltaX = this.touchEndX - this.touchStartX;
     if (Math.abs(deltaX) > 50) {
       if (deltaX < 0) {
-        this.nextSlide();
+        this.goToNextImage();
       } else {
-        this.prevSlide();
+        this.goToPrevImage();
       }
     }
   }
