@@ -1,6 +1,7 @@
-# ArtAngular
+# [lizamorrisonart.com](https://www.lizamorrisonart.com)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.4.
+It is a rewrite of the Qwik app (qwik-art).
 
 ## Development server
 
