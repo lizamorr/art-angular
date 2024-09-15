@@ -1,0 +1,44 @@
+<div class="relative w-full flex items-center justify-center">
+  <button
+    mat-icon-button
+    aria-label="Show previous image"
+    (click)="prevSlide()"
+    class="!hidden lg:flex absolute left-0 p-2 bg-white shadow-md !rounded-full items-center justify-center"
+  >
+    <mat-icon class="pl-1">arrow_back_ios</mat-icon>
+  </button>
+
+  <div
+    class="overflow-hidden w-full max-w-full flex justify-center items-center"
+    [ngStyle]="{ 'max-width': currentImage.originalWidth + 'px' }"
+  >
+    <img
+      [src]="currentImage.uri"
+      [alt]="currentImage.originalAlt"
+      [id]="currentImage.id"
+      class="w-full h-auto object-contain"
+      [ngStyle]="{ 'max-width': currentImage.originalWidth + 'px' }"
+    />
+  </div>
+
+  <button
+    mat-icon-button
+    aria-label="Show next image"
+    (click)="nextSlide()"
+    class="!hidden md:flex absolute right-0 p-2 bg-white shadow-md !rounded-full items-center justify-center"
+  >
+    <mat-icon class="pl-[2px]">arrow_forward_ios</mat-icon>
+  </button>
+</div>
+
+<div class="flex justify-center mt-4 space-x-2">
+  @for (img of group(); track img.id + '--' + i; let i = $index){
+  <span
+    (click)="goToSlide(i)"
+    class="cursor-pointer w-3 h-3 rounded-full"
+    [class.bg-gray-800]="i === currentIndex"
+    [class.bg-gray-300]="i !== currentIndex"
+  >
+  </span
+  >}
+</div>

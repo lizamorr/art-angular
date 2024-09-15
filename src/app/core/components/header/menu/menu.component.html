@@ -1,0 +1,15 @@
+<div class="fixed top-2 right-2 shadow-lg z-50 rounded-full bg-white">
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="Menu more button"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="">Home</button>
+    <button mat-menu-item routerLink="gallery">Gallery</button>
+    <button mat-menu-item routerLink="contact">Contact</button>
+    <button mat-menu-item routerLink="about">About</button>
+  </mat-menu>
+</div>

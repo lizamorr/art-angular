@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Jost", sans-serif;
+}
+
+.mat-mdc-menu-item-text {
+  font-family: "Jost", sans-serif !important;
+}
+
+.mat-mdc-menu-content {
+  background-color: white !important;
+}
+
+.carousel-container {
+  display: block;
+  position: relative;
+  left: 0;
+  right: 0;
+  height: 555px;
+  margin: 0 -10px;
+  overflow-x: clip;
+}
+
+@media only screen and (max-width: 767px) {
+  .carousel-container {
+    height: 380px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .carousel-container {
+    height: 450px;
+  }
+}

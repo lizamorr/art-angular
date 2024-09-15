@@ -1,0 +1,73 @@
+<div class="pt-20">
+  <button
+    mat-icon-button
+    aria-label="Scroll to top"
+    id="scroll-btn"
+    [ngClass]="{
+      block: isScrollBtnDisplayed(),
+      hidden: !isScrollBtnDisplayed()
+    }"
+    class="fixed bottom-10 right-4 z-[49] p-2 cursor-pointer h-10 w-10 rounded-full bg-white shadow-md flex items-center justify-center"
+    (click)="scrollToTop()"
+  >
+    <mat-icon>arrow_upward</mat-icon>
+  </button>
+
+  <div
+    class="fixed h-14 md:h-20 top-12 z-40 left-0 !bg-white bg-opacity-90 text-md md:text-2xl flex space-x-4 md:space-x-20 justify-between px-6 md:justify-center items-center w-full tracking-wider"
+  >
+    <app-gallery-type-toggle
+      label="Drawings"
+      [isSelected]="isDrawingSelected()"
+      (onClickEvent)="toggleSelection('isDrawingSelected')"
+    ></app-gallery-type-toggle>
+    <app-gallery-type-toggle
+      label="Paintings"
+      [isSelected]="isPaintingSelected()"
+      (onClickEvent)="toggleSelection('isPaintingSelected')"
+    ></app-gallery-type-toggle>
+    <app-gallery-type-toggle
+      label="Digital"
+      [isSelected]="isDigitalSelected()"
+      (onClickEvent)="toggleSelection('isDigitalSelected')"
+    ></app-gallery-type-toggle>
+    <app-gallery-type-toggle
+      label="Other"
+      [isSelected]="isOtherSelected()"
+      (onClickEvent)="toggleSelection('isOtherSelected')"
+    ></app-gallery-type-toggle>
+  </div>
+
+  <div
+    class="flex flex-row w-full flex-wrap justify-center align-center text-center mt-6 md:mt-10"
+  >
+    @for (group of filteredImages(); track group[0].desc + '-' + index; let
+    index = $index) {
+    <div class="self-center">
+      @if (group.length === 1 ){
+      <div class="items-center inline-flex flex-col justify-center m-5">
+        <img
+          [src]="group[0].uri"
+          [attr.alt]="group[0].originalAlt"
+          [id]="group[0].id"
+          [width]="group[0].originalWidth"
+          height="auto"
+        />
+        <p
+          class="text-md md:text-xl w-full text-center tracking-wider mt-2"
+          [ngStyle]="{ 'max-width': group[0].originalWidth + 'px' }"
+        >
+          {{ group[0].desc }}
+        </p>
+      </div>
+      } @else {
+      <div
+        class="relative z-5 align-center inline-flex flex-col justify-center w-full my-5 mx-10 md:mx-8 max-w-fit"
+      >
+        <app-gallery-image-carousel [group]="group" />
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>
