@@ -1,4 +1,8 @@
-<div class="relative w-full flex items-center justify-center">
+<div
+  class="relative w-full flex items-center justify-center"
+  (swipeleft)="nextSlide()"
+  (swiperight)="prevSlide()"
+>
   <button
     mat-icon-button
     aria-label="Show previous image"

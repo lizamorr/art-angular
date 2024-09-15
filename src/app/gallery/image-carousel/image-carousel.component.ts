@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  HostListener,
   input,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -36,15 +35,5 @@ export class ImageCarouselComponent {
 
   public goToSlide(index: number) {
     this.currentIndex = index;
-  }
-
-  @HostListener('swiperight', ['$event'])
-  onSwipeRight() {
-    this.prevSlide();
-  }
-
-  @HostListener('swipeleft', ['$event'])
-  onSwipeLeft() {
-    this.nextSlide();
   }
 }
