@@ -22,6 +22,25 @@ export class ImageCarouselComponent {
     return this.group()[this.currentIndex];
   }
 
+  public getLargestGroupImgWidth() {
+    const imgWithLargestWidth = this.group().reduce((maxItem, currentItem) => {
+      return currentItem.originalWidth > (maxItem.originalWidth || 0)
+        ? currentItem
+        : maxItem;
+    }, {});
+
+    return imgWithLargestWidth.originalWidth;
+  }
+
+  public getExtraPaddingForSmallImgs() {
+    const largestWidth = this.getLargestGroupImgWidth();
+    const currentWidth = this.group()[this.currentIndex].originalWidth;
+    const widthDifference = largestWidth - currentWidth;
+    const horizontalPadding = widthDifference / 2;
+
+    return horizontalPadding;
+  }
+
   public goToNextImage() {
     this.currentIndex = (this.currentIndex + 1) % this.group().length;
   }

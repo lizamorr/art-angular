@@ -8,14 +8,18 @@
     mat-icon-button
     aria-label="Show previous image"
     (click)="goToPrevImage()"
-    class="!hidden lg:flex absolute left-0 p-2 bg-white shadow-md !rounded-full items-center justify-center"
+    class="!hidden lg:!flex absolute left-0 p-2 bg-white shadow-md !rounded-full items-center justify-center"
   >
     <mat-icon class="pl-1">arrow_back_ios</mat-icon>
   </button>
 
   <div
-    class="overflow-hidden w-full max-w-full flex justify-center items-center"
-    [ngStyle]="{ 'max-width': currentImage.originalWidth + 'px' }"
+    class="overflow-hidden w-full max-w-full flex flex-col justify-center items-center"
+    [ngStyle]="{
+      'max-width': getLargestGroupImgWidth() + 'px',
+      'padding-left': getExtraPaddingForSmallImgs() + 'px',
+      'padding-right': getExtraPaddingForSmallImgs() + 'px'
+    }"
   >
     <img
       [src]="currentImage.uri"
@@ -24,13 +28,19 @@
       class="w-full h-auto object-contain"
       [ngStyle]="{ 'max-width': currentImage.originalWidth + 'px' }"
     />
+    <p
+      class="w-full text-center tracking-wider mt-2 text-md md:text-xl"
+      [ngStyle]="{ 'max-width': currentImage.originalWidth + 'px' }"
+    >
+      {{ currentImage.desc }}
+    </p>
   </div>
 
   <button
     mat-icon-button
     aria-label="Show next image"
     (click)="goToNextImage()"
-    class="!hidden md:flex absolute right-0 p-2 bg-white shadow-md !rounded-full items-center justify-center"
+    class="!hidden lg:!flex absolute right-0 p-2 bg-white shadow-md !rounded-full items-center justify-center"
   >
     <mat-icon class="pl-[2px]">arrow_forward_ios</mat-icon>
   </button>
