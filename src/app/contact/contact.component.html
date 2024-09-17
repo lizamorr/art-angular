@@ -13,6 +13,7 @@
     >
       <label for="name">
         <input
+          data-cy="contact-name"
           class="md:text-lg w-full border-none rounded-md bg-white mb-2 opacity-95 min-h-[50px] placeholder-black px-4"
           id="name"
           type="text"
@@ -21,6 +22,7 @@
           placeholder="Name" /></label
       ><label for="email">
         <input
+          data-cy="contact-email"
           class="md:text-lg w-full border-none rounded-md bg-white mb-2 opacity-95 min-h-[50px] placeholder-black px-4"
           id="email"
           type="text"
@@ -32,6 +34,7 @@
       </label>
       <label for="message">
         <textarea
+          data-cy="contact-message"
           class="md:text-lg w-full rounded-md bg-white mb-2 p-4 opacity-95 min-h-[120px] placeholder-black"
           id="message"
           type="text"
@@ -43,10 +46,16 @@
       </label>
       <div class="flex justify-center align-center pt-8">
         <button
+          data-cy="contact-submit-btn"
           type="submit"
           aria-label="Send message"
-          class="flex items-center justify-center align-center border shadow bg-white hover:bg-slate-200 px-6 py-3 cursor-pointer rounded-md disabled:bg-slate-50 disabled:cursor-not-allowed"
-          [disabled]="isSendingEmail()"
+          class="flex items-center justify-center align-center border shadow bg-white hover:bg-slate-200 px-6 py-3 cursor-pointer rounded-md disabled:bg-slate-300 disabled:cursor-not-allowed"
+          [disabled]="
+            isSendingEmail() ||
+            !emailForm.get('name')?.value ||
+            !emailForm.get('email')?.value ||
+            !emailForm.get('message')?.value
+          "
         >
           @if (!isSendingEmail() && !isEmailSent()) {<mat-icon>send</mat-icon>}
           @else if (isSendingEmail()) {<mat-icon>pending</mat-icon>} @else

@@ -1,5 +1,6 @@
 <div class="pt-20">
   <button
+    data-cy="up-btn"
     mat-icon-button
     aria-label="Scroll to top"
     id="scroll-btn"
@@ -18,21 +19,25 @@
   >
     <app-gallery-type-toggle
       label="Drawings"
+      data-cy="gallery-drawing"
       [isSelected]="isDrawingSelected()"
       (onClickEvent)="toggleSelection('isDrawingSelected')"
     ></app-gallery-type-toggle>
     <app-gallery-type-toggle
       label="Paintings"
+      data-cy="gallery-painting"
       [isSelected]="isPaintingSelected()"
       (onClickEvent)="toggleSelection('isPaintingSelected')"
     ></app-gallery-type-toggle>
     <app-gallery-type-toggle
       label="Digital"
+      data-cy="gallery-digital"
       [isSelected]="isDigitalSelected()"
       (onClickEvent)="toggleSelection('isDigitalSelected')"
     ></app-gallery-type-toggle>
     <app-gallery-type-toggle
       label="Other"
+      data-cy="gallery-other"
       [isSelected]="isOtherSelected()"
       (onClickEvent)="toggleSelection('isOtherSelected')"
     ></app-gallery-type-toggle>
@@ -52,10 +57,12 @@
           [id]="group[0].id"
           [width]="group[0].originalWidth"
           height="auto"
+          [attr.data-cy]="'gallery-img--' + index"
         />
         <p
           class="text-md md:text-xl w-full text-center tracking-wider mt-2"
           [ngStyle]="{ 'max-width': group[0].originalWidth + 'px' }"
+          [attr.data-cy]="'gallery-img-desc--' + index"
         >
           {{ group[0].desc }}
         </p>
@@ -64,7 +71,7 @@
       <div
         class="relative z-5 align-center inline-flex flex-col justify-center w-full my-5 mx-10 md:mx-8 max-w-fit"
       >
-        <app-gallery-image-carousel [group]="group" />
+        <app-gallery-image-carousel [group]="group" [index]="index" />
       </div>
       }
     </div>

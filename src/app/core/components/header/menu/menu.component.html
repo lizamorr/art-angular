@@ -4,20 +4,41 @@
     [matMenuTriggerFor]="menu"
     aria-label="Menu more button"
     data-testid="menu-button"
+    data-cy="menu-open"
   >
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="" data-testid="menu-item-home">
+    <button
+      data-cy="menu-home"
+      mat-menu-item
+      routerLink=""
+      data-testid="menu-item-home"
+    >
       Home
     </button>
-    <button mat-menu-item routerLink="gallery" data-testid="menu-item-gallery">
+    <button
+      data-cy="menu-gallery"
+      mat-menu-item
+      routerLink="gallery"
+      data-testid="menu-item-gallery"
+    >
       Gallery
     </button>
-    <button mat-menu-item routerLink="contact" data-testid="menu-item-contact">
+    <button
+      data-cy="menu-contact"
+      mat-menu-item
+      routerLink="contact"
+      data-testid="menu-item-contact"
+    >
       Contact
     </button>
-    <button mat-menu-item routerLink="about" data-testid="menu-item-about">
+    <button
+      data-cy="menu-about"
+      mat-menu-item
+      routerLink="about"
+      data-testid="menu-item-about"
+    >
       About
     </button>
   </mat-menu>

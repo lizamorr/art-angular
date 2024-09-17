@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ImageCarouselComponent {
   public group = input.required<Array<any>>();
+  public index = input.required<number>();
   public currentIndex: number = 0;
   public touchStartX = 0;
   public touchEndX = 0;

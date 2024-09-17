@@ -9,6 +9,7 @@
     aria-label="Show previous image"
     (click)="goToPrevImage()"
     class="!hidden lg:!flex absolute left-0 p-2 bg-white shadow-md !rounded-full items-center justify-center"
+    [attr.data-cy]="'img-carousel-prev--' + index()"
   >
     <mat-icon class="pl-1">arrow_back_ios</mat-icon>
   </button>
@@ -27,10 +28,12 @@
       [id]="currentImage.id"
       class="w-full h-auto object-contain"
       [ngStyle]="{ 'max-width': currentImage.originalWidth + 'px' }"
+      [attr.data-cy]="'img-carousel--' + index()"
     />
     <p
       class="w-full text-center tracking-wider mt-2 text-md md:text-xl"
       [ngStyle]="{ 'max-width': currentImage.originalWidth + 'px' }"
+      [attr.data-cy]="'img-carousel-desc--' + index()"
     >
       {{ currentImage.desc }}
     </p>
@@ -41,12 +44,16 @@
     aria-label="Show next image"
     (click)="goToNextImage()"
     class="!hidden lg:!flex absolute right-0 p-2 bg-white shadow-md !rounded-full items-center justify-center"
+    [attr.data-cy]="'img-carousel-next--' + index()"
   >
     <mat-icon class="pl-[2px]">arrow_forward_ios</mat-icon>
   </button>
 </div>
 
-<div class="flex justify-center mt-4 space-x-2">
+<div
+  class="flex justify-center mt-4 space-x-2"
+  [attr.data-cy]="'img-carousel-dots--' + index()"
+>
   @for (img of group(); track img.id + '--' + i; let i = $index){
   <span
     (click)="goToImage(i)"

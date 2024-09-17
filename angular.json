@@ -20,7 +20,9 @@
             "outputPath": "dist/art-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -88,7 +90,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -103,41 +108,60 @@
             ],
             "scripts": []
           }
-        }
-      }
-    },
-    "ui": {
-      "projectType": "library",
-      "root": "projects/ui",
-      "sourceRoot": "projects/ui/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
           "options": {
-            "project": "projects/ui/ng-package.json"
+            "devServerTarget": "art-angular:serve"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ui/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/ui/tsconfig.lib.json"
+              "devServerTarget": "art-angular:serve:production"
             }
-          },
-          "defaultConfiguration": "production"
+          }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
           "options": {
-            "tsConfig": "projects/ui/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
+            "watch": true,
+            "headless": false
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "art-angular:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "art-angular:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "art-angular:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "art-angular:serve:production"
+            }
           }
         }
       }
     }
   },
   "cli": {
-    "analytics": "e9a978c3-b556-4cc1-a9a5-7e87fdffcab2"
+    "analytics": "e9a978c3-b556-4cc1-a9a5-7e87fdffcab2",
+    "schematicCollections": [
+      "@cypress/schematic",
+      "@schematics/angular"
+    ]
   }
 }
