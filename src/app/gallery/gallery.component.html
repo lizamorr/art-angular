@@ -51,14 +51,23 @@
     <div class="self-center">
       @if (group.length === 1 ){
       <div class="items-center inline-flex flex-col justify-center m-5">
+        @if (index === 1) {
         <img
-          [src]="group[0].uri"
+          [ngSrc]="group[0].uri"
           [attr.alt]="group[0].originalAlt"
           [id]="group[0].id"
           [width]="group[0].originalWidth"
-          height="auto"
+          [height]="200"
           [attr.data-cy]="'gallery-img--' + index"
-        />
+          priority
+        />} @else {<img
+          [ngSrc]="group[0].uri"
+          [attr.alt]="group[0].originalAlt"
+          [id]="group[0].id"
+          [width]="group[0].originalWidth"
+          [height]="200"
+          [attr.data-cy]="'gallery-img--' + index"
+        />}
         <p
           class="text-md md:text-xl w-full text-center tracking-wider mt-2"
           [ngStyle]="{ 'max-width': group[0].originalWidth + 'px' }"

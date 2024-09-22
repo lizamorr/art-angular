@@ -1,15 +1,8 @@
-import { CommonModule } from '@angular/common';
-import {
-  Component,
-  computed,
-  HostListener,
-  signal,
-} from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Component, computed, HostListener, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
-import {
-  ImageCarouselComponent,
-} from './image-carousel/image-carousel.component';
+import { ImageCarouselComponent } from './image-carousel/image-carousel.component';
 import { imageGroups } from './image-groups';
 import { TypeToggleComponent } from './type-toggle.component';
 
@@ -29,6 +22,7 @@ type ActiveFilter = 'drawing' | 'painting' | 'digital' | 'misc' | 'all';
     MatIconModule,
     TypeToggleComponent,
     ImageCarouselComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './gallery.component.html',
 })
