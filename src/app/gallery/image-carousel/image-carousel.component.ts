@@ -1,8 +1,5 @@
-import { CommonModule } from '@angular/common';
-import {
-  Component,
-  input,
-} from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -15,44 +12,66 @@ import { MatIconModule } from '@angular/material/icon';
 export class ImageCarouselComponent {
   public group = input.required<Array<any>>();
   public index = input.required<number>();
-  public currentIndex: number = 0;
+  public currentIndex = signal(0);
   public touchStartX = 0;
   public touchEndX = 0;
 
-  public get currentImage() {
-    return this.group()[this.currentIndex];
-  }
+  public document = inject(DOCUMENT);
 
-  public getLargestGroupImgWidth() {
-    const imgWithLargestWidth = this.group().reduce((maxItem, currentItem) => {
+  public currentImage = computed(() => {
+    return this.group()[this.currentIndex()];
+  });
+
+  public largestGroupImg = computed(() => {
+    return this.group().reduce((maxItem, currentItem) => {
       return currentItem.originalWidth > (maxItem.originalWidth || 0)
         ? currentItem
         : maxItem;
     }, {});
+  });
 
-    return imgWithLargestWidth.originalWidth;
-  }
+  public largestGroupImgWidth = computed(() => {
+    return this.largestGroupImg().originalWidth;
+  });
 
-  public getExtraPaddingForSmallImgs() {
-    const largestWidth = this.getLargestGroupImgWidth();
-    const currentWidth = this.group()[this.currentIndex].originalWidth;
-    const widthDifference = largestWidth - currentWidth;
+  public currentLargestGroupImgWidth = computed(() => {
+    const imgWithLargestWidth = this.largestGroupImg();
+    const currentImageWidth = this.document.getElementById(
+      imgWithLargestWidth.id
+    )?.clientWidth;
+
+    return currentImageWidth || imgWithLargestWidth.originalWidth;
+  });
+
+  public extraPaddingForSmallImgs = computed(() => {
+    const currentLargestImgWidth = this.currentLargestGroupImgWidth();
+    const largestWidth = this.largestGroupImgWidth();
+
+    const currentWidth = this.group()[this.currentIndex()].originalWidth;
+    const currentImageWidth = this.document.getElementById(
+      this.group()[this.currentIndex()].id
+    )?.clientWidth;
+
+    const widthDifference =
+      (currentLargestImgWidth || largestWidth) -
+      (currentImageWidth || currentWidth);
     const horizontalPadding = widthDifference / 2;
 
     return horizontalPadding;
-  }
+  });
 
   public goToNextImage() {
-    this.currentIndex = (this.currentIndex + 1) % this.group().length;
+    this.currentIndex.set((this.currentIndex() + 1) % this.group().length);
   }
 
   public goToPrevImage() {
-    this.currentIndex =
-      (this.currentIndex - 1 + this.group().length) % this.group().length;
+    this.currentIndex.set(
+      (this.currentIndex() - 1 + this.group().length) % this.group().length
+    );
   }
 
   public goToImage(index: number) {
-    this.currentIndex = index;
+    this.currentIndex.set(index);
   }
 
   public onTouchStart(event: TouchEvent) {

@@ -17,25 +17,25 @@
   <div
     class="overflow-hidden w-full max-w-full flex flex-col justify-center items-center"
     [ngStyle]="{
-      'max-width': getLargestGroupImgWidth() + 'px',
-      'padding-left': getExtraPaddingForSmallImgs() + 'px',
-      'padding-right': getExtraPaddingForSmallImgs() + 'px'
+      'max-width': largestGroupImgWidth() + 'px',
+      'padding-left': extraPaddingForSmallImgs() + 'px',
+      'padding-right': extraPaddingForSmallImgs() + 'px'
     }"
   >
     <img
-      [src]="currentImage.uri"
-      [alt]="currentImage.originalAlt"
-      [id]="currentImage.id"
+      [src]="currentImage().uri"
+      [alt]="currentImage().originalAlt"
+      [id]="currentImage().id"
       class="w-full h-auto object-contain"
-      [ngStyle]="{ 'max-width': currentImage.originalWidth + 'px' }"
+      [ngStyle]="{ 'max-width': currentImage().originalWidth + 'px' }"
       [attr.data-cy]="'img-carousel--' + index()"
     />
     <p
       class="w-full text-center tracking-wider mt-2 text-md md:text-xl"
-      [ngStyle]="{ 'max-width': currentImage.originalWidth + 'px' }"
+      [ngStyle]="{ 'max-width': currentImage().originalWidth + 'px' }"
       [attr.data-cy]="'img-carousel-desc--' + index()"
     >
-      {{ currentImage.desc }}
+      {{ currentImage().desc }}
     </p>
   </div>
 
@@ -58,8 +58,8 @@
   <span
     (click)="goToImage(i)"
     class="cursor-pointer w-3 h-3 rounded-full"
-    [class.bg-gray-800]="i === currentIndex"
-    [class.bg-gray-300]="i !== currentIndex"
+    [class.bg-gray-800]="i === currentIndex()"
+    [class.bg-gray-300]="i !== currentIndex()"
   >
   </span
   >}
