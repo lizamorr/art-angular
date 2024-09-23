@@ -1,6 +1,14 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, computed, HostListener, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  HostListener,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { Meta } from '@angular/platform-browser';
 
 import { ImageCarouselComponent } from './image-carousel/image-carousel.component';
 import { imageGroups } from './image-groups';
@@ -26,7 +34,9 @@ type ActiveFilter = 'drawing' | 'painting' | 'digital' | 'misc' | 'all';
   ],
   templateUrl: './gallery.component.html',
 })
-export class GalleryComponent {
+export class GalleryComponent implements OnInit {
+  public metaService = inject(Meta);
+
   public isDrawingSelected = signal(false);
   public isPaintingSelected = signal(false);
   public isDigitalSelected = signal(false);
@@ -37,6 +47,25 @@ export class GalleryComponent {
   onWindowScroll(): void {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     this.isScrollBtnDisplayed.set(scrollTop > 20);
+  }
+
+  public ngOnInit(): void {
+    this.metaService.updateTag({
+      name: 'description',
+      content:
+        'Drawings, paintings, digital, and other types of artwork by by Liza Morrison.',
+    });
+    this.metaService.updateTag({
+      name: 'keywords',
+      content:
+        'Liza, Morrison, Gallery, Art, Paintings, Drawings, Digital, artwork',
+    });
+    this.metaService.updateTag({ property: 'og:title', content: 'About Liza' });
+    this.metaService.updateTag({
+      property: 'og:description',
+      content:
+        'Drawings, paintings, digital, and other types of artwork by by Liza Morrison.',
+    });
   }
 
   public filteredImages = computed(() => {

@@ -1,8 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  signal,
-} from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -10,6 +7,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { Meta } from '@angular/platform-browser';
 
 import emailjs from '@emailjs/browser';
 
@@ -21,7 +19,9 @@ import { environment } from '../../environments/environment';
   imports: [CommonModule, FormsModule, MatIconModule, ReactiveFormsModule],
   templateUrl: './contact.component.html',
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
+  public metaService = inject(Meta);
+
   public isSendingEmail = signal(false);
   public isEmailSent = signal(false);
 
@@ -30,6 +30,22 @@ export class ContactComponent {
     email: new FormControl(''),
     message: new FormControl(''),
   });
+
+  public ngOnInit(): void {
+    this.metaService.updateTag({
+      name: 'description',
+      content: 'Send a message to Liza Morrison.',
+    });
+    this.metaService.updateTag({
+      name: 'keywords',
+      content: 'Liza, Morrison, Contact, Email',
+    });
+    this.metaService.updateTag({ property: 'og:title', content: 'About Liza' });
+    this.metaService.updateTag({
+      property: 'og:description',
+      content: 'Send a message to Liza Morrison.',
+    });
+  }
 
   public async sendMessage() {
     this.isSendingEmail.set(true);
