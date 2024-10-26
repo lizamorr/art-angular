@@ -41,3 +41,43 @@ body {
     height: 450px;
   }
 }
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+mat-toolbar {
+  background: none !important;
+}
+.mdc-list-item__content {
+  text-align: center;
+}
+mat-nav-list {
+  padding: 12px !important;
+}
+.mdc-list-item__primary-text {
+  font-family: "Jost", sans-serif !important;
+}
+
+mat-sidenav {
+  width: 50% !important;
+}
+@media (min-width: 768px) {
+  mat-sidenav {
+    width: 30% !important;
+  }
+}
+
+.mat-drawer-backdrop.mat-drawer-shown {
+  position: fixed !important;
+}
+
+.no-scroll {
+  overflow: hidden;
+}

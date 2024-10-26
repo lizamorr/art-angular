@@ -1,45 +1,58 @@
-<div class="fixed top-2 right-2 shadow-lg z-50 rounded-full bg-white">
-  <button
-    mat-icon-button
-    [matMenuTriggerFor]="menu"
-    aria-label="Menu more button"
-    data-testid="menu-button"
-    data-cy="menu-open"
-  >
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button
-      data-cy="menu-home"
-      mat-menu-item
-      routerLink=""
-      data-testid="menu-item-home"
-    >
-      Home
+<div class="menu-container">
+  <mat-toolbar class="z-50 justify-end">
+    <button mat-icon-button (click)="snav.toggle()" class="fixed top-2">
+      @if (!snav.opened) {<mat-icon>menu</mat-icon>} @else
+      {<mat-icon>close</mat-icon>}
     </button>
-    <button
-      data-cy="menu-gallery"
-      mat-menu-item
-      routerLink="gallery"
-      data-testid="menu-item-gallery"
+  </mat-toolbar>
+
+  <mat-sidenav-container class="flex-1" [style.marginTop.px]="56">
+    <mat-sidenav
+      #snav
+      mode="over"
+      position="end"
+      class="pt-14"
+      fixedInViewport="true"
     >
-      Gallery
-    </button>
-    <button
-      data-cy="menu-contact"
-      mat-menu-item
-      routerLink="contact"
-      data-testid="menu-item-contact"
-    >
-      Contact
-    </button>
-    <button
-      data-cy="menu-about"
-      mat-menu-item
-      routerLink="about"
-      data-testid="menu-item-about"
-    >
-      About
-    </button>
-  </mat-menu>
+      <mat-nav-list class="space-y-2">
+        <a
+          mat-list-item
+          data-cy="menu-home"
+          routerLink="/"
+          data-testid="menu-item-home"
+          (click)="snav.close()"
+        >
+          Home
+        </a>
+        <a
+          mat-list-item
+          data-cy="menu-gallery"
+          routerLink="gallery"
+          data-testid="menu-item-gallery"
+          (click)="snav.close()"
+        >
+          Gallery
+        </a>
+        <a
+          mat-list-item
+          data-cy="menu-contact"
+          routerLink="contact"
+          data-testid="menu-item-contact"
+          (click)="snav.close()"
+        >
+          Contact
+        </a>
+        <a
+          mat-list-item
+          data-cy="menu-about"
+          routerLink="about"
+          data-testid="menu-item-about"
+          (click)="snav.close()"
+        >
+          About
+        </a>
+      </mat-nav-list>
+      <core-footer class="fixed bottom-0 right-0" />
+    </mat-sidenav>
+  </mat-sidenav-container>
 </div>
