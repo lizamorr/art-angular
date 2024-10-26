@@ -1,5 +1,9 @@
 <header
   class="fixed top-0 w-full flex justify-between items-center z-50 h-12 md:h-16 overflow-hidden md:py-4"
+  [ngClass]="{
+    'bg-transparent': isOnContactPage(),
+    'bg-white': isOnContactPage() === false
+  }"
 >
   <core-logo />
   <core-menu />
