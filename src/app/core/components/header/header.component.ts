@@ -36,8 +36,7 @@ export class HeaderComponent {
     const url = this.router.url;
     this.isOnContactOrHomePage.set(
       url.endsWith('/contact') ||
-        !url.endsWith('/gallery') ||
-        !url.endsWith('/about')
+        (!url.endsWith('/gallery') && !url.endsWith('/about'))
     );
   }
 }

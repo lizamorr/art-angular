@@ -34,7 +34,7 @@ import { FooterComponent } from '../../footer/footer.component';
 export class MenuComponent implements AfterViewInit {
   @ViewChild('snav') sidenav!: MatSidenav;
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.sidenav.openedChange.subscribe((opened: boolean) => {
       if (opened) {
         document.body.classList.add('no-scroll');

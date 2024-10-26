@@ -1,4 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 
 @Component({
@@ -7,8 +13,9 @@ import { Meta } from '@angular/platform-browser';
   imports: [],
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   public metaService = inject(Meta);
+  public document = inject(DOCUMENT);
 
   public ngOnInit(): void {
     this.metaService.updateTag({
@@ -28,5 +35,9 @@ export class HomeComponent implements OnInit {
       property: 'og:image',
       content: 'assets/image/labrinth-min.webp',
     });
+  }
+
+  public ngAfterViewInit(): void {
+    document?.body?.classList.add('no-scroll');
   }
 }
