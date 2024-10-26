@@ -1,11 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Meta } from '@angular/platform-browser';
 
@@ -16,7 +22,13 @@ import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatIconModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+  ],
   templateUrl: './contact.component.html',
 })
 export class ContactComponent implements OnInit {

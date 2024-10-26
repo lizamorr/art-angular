@@ -46,10 +46,11 @@
       </label>
       <div class="flex justify-center align-center pt-8">
         <button
+          mat-raised-button
           data-cy="contact-submit-btn"
           type="submit"
           aria-label="Send message"
-          class="flex items-center justify-center align-center border shadow bg-white hover:bg-slate-200 px-6 py-3 cursor-pointer rounded-md disabled:opacity-60 disabled:cursor-not-allowed"
+          class="flex items-center justify-center align-center !bg-white px-8 !py-6 cursor-pointer rounded-md disabled:cursor-not-allowed"
           [disabled]="
             isSendingEmail() ||
             !emailForm.get('name')?.value ||
@@ -57,9 +58,12 @@
             !emailForm.get('message')?.value
           "
         >
-          @if (!isSendingEmail() && !isEmailSent()) {<mat-icon>send</mat-icon>}
-          @else if (isSendingEmail()) {<mat-icon>pending</mat-icon>} @else
-          {<mat-icon>check_circle</mat-icon>}
+          <div class="flex text-center">
+            @if (!isSendingEmail() && !isEmailSent())
+            {<mat-icon>send</mat-icon>} @else if (isSendingEmail())
+            {<mat-icon>pending</mat-icon>} @else
+            {<mat-icon>check_circle</mat-icon>}
+          </div>
         </button>
       </div>
     </form>
