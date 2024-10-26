@@ -1,8 +1,12 @@
 <div class="menu-container">
-  <mat-toolbar class="z-50 justify-end">
-    <button mat-icon-button (click)="snav.toggle()" class="fixed top-2">
-      @if (!snav.opened) {<mat-icon>menu</mat-icon>} @else
-      {<mat-icon>close</mat-icon>}
+  <mat-toolbar class="z-50 justify-end !pt-2 !px-1">
+    <button
+      mat-icon-button
+      (click)="snav.toggle()"
+      class="!p-0 flex items-center"
+    >
+      @if (!snav.opened) {<mat-icon class="!w-10 !h-10 !text-4xl">menu</mat-icon
+      >} @else {<mat-icon class="!w-10 !h-10 !text-4xl">close</mat-icon>}
     </button>
   </mat-toolbar>
 

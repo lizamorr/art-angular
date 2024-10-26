@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import {
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
+import {
+  ActivatedRoute,
+  Router,
+  RouterLink,
+} from '@angular/router';
 
 import { LogoComponent } from './logo/logo.component';
 import { MenuComponent } from './menu/menu.component';
@@ -15,17 +23,21 @@ import { MenuComponent } from './menu/menu.component';
 export class HeaderComponent {
   public router = inject(Router);
   public activatedRoute = inject(ActivatedRoute);
-  public isOnContactPage = signal(false);
+  public isOnContactOrHomePage = signal(false);
 
   ngOnInit() {
     this.router.events.subscribe(() => {
-      this.checkIfOnContactPage();
+      this.checkIfOnContactOrHomePage();
     });
-    this.checkIfOnContactPage();
+    this.checkIfOnContactOrHomePage();
   }
 
-  private checkIfOnContactPage() {
+  private checkIfOnContactOrHomePage() {
     const url = this.router.url;
-    this.isOnContactPage.set(url.endsWith('/contact'));
+    this.isOnContactOrHomePage.set(
+      url.endsWith('/contact') ||
+        !url.endsWith('/gallery') ||
+        !url.endsWith('/about')
+    );
   }
 }
