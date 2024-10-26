@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './footer.component.html',
 })
 export class FooterComponent {
-  public githubLink = 'https://github.com/lizamorr/artwork-website';
+  public githubLink = 'https://github.com/lizamorr/art-angular';
   public year = new Date().getFullYear();
 }
