@@ -8,7 +8,7 @@
     mat-icon-button
     aria-label="Show previous image"
     (click)="goToPrevImage()"
-    class="!hidden lg:!flex absolute left-0 p-2 bg-white shadow-md !rounded-full items-center justify-center"
+    class="!hidden lg:!flex absolute left-0 p-2 bg-white shadow-md !rounded-full items-center justify-center !text-slate-500 !hover:bg-slate-100"
     [attr.data-cy]="'img-carousel-prev--' + index()"
   >
     <mat-icon class="pl-1">arrow_back_ios</mat-icon>
@@ -45,7 +45,7 @@
     mat-icon-button
     aria-label="Show next image"
     (click)="goToNextImage()"
-    class="!hidden lg:!flex absolute right-0 p-2 bg-white shadow-md !rounded-full items-center justify-center"
+    class="!hidden lg:!flex absolute right-0 p-2 bg-white shadow-md !rounded-full items-center justify-center !text-slate-500 !hover:bg-slate-100"
     [attr.data-cy]="'img-carousel-next--' + index()"
   >
     <mat-icon class="pl-[2px]">arrow_forward_ios</mat-icon>
@@ -60,8 +60,8 @@
   <span
     (click)="goToImage(i)"
     class="cursor-pointer w-3 h-3 rounded-full"
-    [class.bg-gray-800]="i === currentIndex()"
-    [class.bg-gray-300]="i !== currentIndex()"
+    [class.bg-slate-500]="i === currentIndex()"
+    [class.bg-slate-100]="i !== currentIndex()"
   >
   </span
   >}
