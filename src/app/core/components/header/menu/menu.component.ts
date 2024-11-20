@@ -6,6 +6,7 @@ import {
   Component,
   HostBinding,
   inject,
+  OnDestroy,
   signal,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -37,7 +38,7 @@ import { FooterComponent } from '../../footer/footer.component';
   ],
   templateUrl: './menu.component.html',
 })
-export class MenuComponent {
+export class MenuComponent implements OnDestroy {
   @HostBinding('class.is-mobile') isMobile: boolean = false;
 
   public document = inject(DOCUMENT);
@@ -48,6 +49,12 @@ export class MenuComponent {
     this.checkScreenSize();
     if (typeof window !== 'undefined') {
       window.addEventListener('resize', () => this.checkScreenSize());
+    }
+  }
+
+  public ngOnDestroy(): void {
+    if (typeof document !== 'undefined') {
+      document.body.classList.remove('no-scroll');
     }
   }
 
@@ -69,6 +76,9 @@ export class MenuComponent {
   public navigateTo(route: string): void {
     this.router.navigate([route]);
     this.isSidenavOpen.set(false);
+    if (typeof document !== 'undefined') {
+      document.body.classList.remove('no-scroll');
+    }
   }
 
   public isActive(route: string): boolean {
