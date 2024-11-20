@@ -6,17 +6,14 @@ import { provideClientHydration } from '@angular/platform-browser';
 import {
   provideAnimationsAsync,
 } from '@angular/platform-browser/animations/async';
-import {
-  provideRouter,
-  withViewTransitions,
-} from '@angular/router';
+import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withViewTransitions()),
+    provideRouter(routes), //withViewTransitions()
     provideClientHydration(),
     provideAnimationsAsync(),
   ],
