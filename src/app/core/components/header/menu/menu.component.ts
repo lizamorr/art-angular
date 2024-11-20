@@ -48,7 +48,7 @@ export class MenuComponent implements AfterViewInit {
 
   public document = inject(DOCUMENT);
   public router = inject(Router);
-  isSidenavOpen = signal(false);
+  public isSidenavOpen = signal(false);
 
   public ngAfterViewInit(): void {
     if (typeof document !== 'undefined') {
