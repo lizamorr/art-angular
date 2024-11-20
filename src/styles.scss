@@ -87,11 +87,6 @@ mat-sidenav {
   overflow: hidden;
 }
 
-.mdc-list-item__content,
-.mat-toolbar .mat-mdc-button-base.mat-mdc-button-base.mat-unthemed {
-  color: black !important;
-}
-
 :host {
   &.is-mobile .menu-container {
     display: block;
@@ -100,8 +95,4 @@ mat-sidenav {
   .menu-container {
     display: none;
   }
-}
-
-.mat-button-focus-overlay {
-  background-color: #f1f5f9 !important;
 }

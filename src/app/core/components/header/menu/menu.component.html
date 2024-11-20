@@ -3,7 +3,7 @@
   <div class="fixed top-1 right-1 z-[60] flex justify-end items-center w-full">
     <button
       (click)="isSidenavOpen() ? toggleSidenav(false) : toggleSidenav(true)"
-      class="flex items-center p-2 rounded-full hover:bg-gray-100 transition"
+      class="flex items-center p-2 rounded-full focus:bg-gray-100 transition"
     >
       @if (!isSidenavOpen()) {
       <span class="material-icons !w-10 !h-10 !text-4xl">menu</span>
