@@ -3,21 +3,16 @@ import {
   DOCUMENT,
 } from '@angular/common';
 import {
-  AfterViewInit,
   Component,
   HostBinding,
   inject,
   signal,
-  ViewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import {
-  MatSidenav,
-  MatSidenavModule,
-} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {
   Router,
@@ -42,25 +37,12 @@ import { FooterComponent } from '../../footer/footer.component';
   ],
   templateUrl: './menu.component.html',
 })
-export class MenuComponent implements AfterViewInit {
-  @ViewChild('snav') sidenav!: MatSidenav;
+export class MenuComponent {
   @HostBinding('class.is-mobile') isMobile: boolean = false;
 
   public document = inject(DOCUMENT);
   public router = inject(Router);
   public isSidenavOpen = signal(false);
-
-  public ngAfterViewInit(): void {
-    if (typeof document !== 'undefined') {
-      this.sidenav.openedChange.subscribe((opened: boolean) => {
-        if (opened) {
-          document.body.classList.add('no-scroll');
-        } else {
-          document.body.classList.remove('no-scroll');
-        }
-      });
-    }
-  }
 
   public ngOnInit() {
     this.checkScreenSize();
@@ -71,6 +53,11 @@ export class MenuComponent implements AfterViewInit {
 
   public toggleSidenav(isOpen: boolean): void {
     this.isSidenavOpen.set(isOpen);
+    if (isOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
   }
 
   public checkScreenSize() {
