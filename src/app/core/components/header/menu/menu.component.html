@@ -1,62 +1,114 @@
+@if (isMobile) {
 <div class="menu-container">
-  <mat-toolbar class="z-50 justify-end !pt-2 !px-1">
+  <div class="fixed top-1 right-1 z-[60] flex justify-end items-center w-full">
     <button
-      mat-icon-button
-      (click)="snav.toggle()"
-      class="!p-0 flex items-center"
+      (click)="isSidenavOpen() ? toggleSidenav(false) : toggleSidenav(true)"
+      class="flex items-center p-2 rounded-full hover:bg-gray-100 transition"
     >
-      @if (!snav.opened) {<mat-icon class="!w-10 !h-10 !text-4xl">menu</mat-icon
-      >} @else {<mat-icon class="!w-10 !h-10 !text-4xl">close</mat-icon>}
+      @if (!isSidenavOpen()) {
+      <span class="material-icons !w-10 !h-10 !text-4xl">menu</span>
+      } @else {
+      <span class="material-icons !w-10 !h-10 !text-4xl">close</span>
+      }
     </button>
-  </mat-toolbar>
+  </div>
 
-  <mat-sidenav-container class="flex-1" [style.marginTop.px]="56">
-    <mat-sidenav
-      #snav
-      mode="over"
-      position="end"
-      class="pt-14"
-      fixedInViewport="true"
+  <div class="relative flex-1" [style.marginTop.px]="56">
+    <div
+      *ngIf="isSidenavOpen()"
+      class="fixed inset-0 bg-black bg-opacity-50 z-40"
+      (click)="toggleSidenav(false)"
+    ></div>
+    <div
+      class="fixed right-0 top-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300"
+      [class.translate-x-full]="!isSidenavOpen()"
+      [class.translate-x-0]="isSidenavOpen()"
     >
-      <mat-nav-list class="space-y-2">
-        <a
-          mat-list-item
-          data-cy="menu-home"
-          routerLink="/"
-          data-testid="menu-item-home"
-          (click)="snav.close()"
-        >
-          Home
-        </a>
-        <a
-          mat-list-item
-          data-cy="menu-gallery"
-          routerLink="gallery"
-          data-testid="menu-item-gallery"
-          (click)="snav.close()"
-        >
-          Gallery
-        </a>
-        <a
-          mat-list-item
-          data-cy="menu-contact"
-          routerLink="contact"
-          data-testid="menu-item-contact"
-          (click)="snav.close()"
-        >
-          Contact
-        </a>
-        <a
-          mat-list-item
-          data-cy="menu-about"
-          routerLink="about"
-          data-testid="menu-item-about"
-          (click)="snav.close()"
-        >
-          About
-        </a>
-      </mat-nav-list>
-      <core-footer />
-    </mat-sidenav>
-  </mat-sidenav-container>
+      <div class="pt-16 px-4">
+        <nav class="space-y-2">
+          <a
+            class="block py-4 px-4 rounded-lg hover:bg-gray-100 text-[24px] text-center"
+            [class.bg-slate-100]="isActive('/')"
+            routerLink="/"
+            data-cy="menu-home"
+            data-testid="menu-item-home"
+            (click)="navigateTo('/')"
+          >
+            Home
+          </a>
+          <a
+            class="block py-4 px-4 rounded-lg hover:bg-gray-100 text-[24px] text-center"
+            [class.bg-slate-100]="isActive('gallery')"
+            routerLink="gallery"
+            data-cy="menu-gallery"
+            data-testid="menu-item-gallery"
+            (click)="navigateTo('gallery')"
+          >
+            Gallery
+          </a>
+          <a
+            class="block py-4 px-4 rounded-lg hover:bg-gray-100 text-[24px] text-center"
+            [class.bg-slate-100]="isActive('contact')"
+            routerLink="contact"
+            data-cy="menu-contact"
+            data-testid="menu-item-contact"
+            (click)="navigateTo('contact')"
+          >
+            Contact
+          </a>
+          <a
+            class="block py-4 px-4 rounded-lg hover:bg-gray-100 text-[24px] text-center"
+            [class.bg-slate-100]="isActive('about')"
+            routerLink="about"
+            data-cy="menu-about"
+            data-testid="menu-item-about"
+            (click)="navigateTo('about')"
+          >
+            About
+          </a>
+        </nav>
+        <core-footer class="mt-4"></core-footer>
+      </div>
+    </div>
+  </div>
 </div>
+} @else {
+<div class="flex px-6 space-x-4 text-lg">
+  <button
+    class="hover:bg-slate-100 px-2 py-1 rounded-lg"
+    [ngClass]="{ 'bg-slate-100': isActive('/') }"
+    data-cy="menu-home"
+    data-testid="menu-item-home"
+    (click)="navigateTo('/')"
+  >
+    Home
+  </button>
+  <button
+    class="hover:bg-slate-100 px-2 py-1 rounded-lg"
+    [ngClass]="{ 'bg-slate-100': isActive('/gallery') }"
+    data-cy="menu-gallery"
+    data-testid="menu-item-gallery"
+    (click)="navigateTo('/gallery')"
+  >
+    Gallery
+  </button>
+  <button
+    class="hover:bg-slate-100 px-2 py-1 rounded-lg"
+    [ngClass]="{ 'bg-slate-100': isActive('/contact') }"
+    data-cy="menu-contact"
+    data-testid="menu-item-contact"
+    (click)="navigateTo('/contact')"
+  >
+    Contact
+  </button>
+  <button
+    class="hover:bg-slate-100 px-2 py-1 rounded-lg"
+    [ngClass]="{ 'bg-slate-100': isActive('/about') }"
+    data-cy="menu-about"
+    data-testid="menu-item-about"
+    (click)="navigateTo('/about')"
+  >
+    About
+  </button>
+</div>
+}

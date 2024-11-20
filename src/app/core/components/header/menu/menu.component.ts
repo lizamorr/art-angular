@@ -1,6 +1,13 @@
 import {
+  CommonModule,
+  DOCUMENT,
+} from '@angular/common';
+import {
   AfterViewInit,
   Component,
+  HostBinding,
+  inject,
+  signal,
   ViewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,7 +19,10 @@ import {
   MatSidenavModule,
 } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink } from '@angular/router';
+import {
+  Router,
+  RouterLink,
+} from '@angular/router';
 
 import { FooterComponent } from '../../footer/footer.component';
 
@@ -28,19 +38,53 @@ import { FooterComponent } from '../../footer/footer.component';
     MatSidenavModule,
     MatToolbarModule,
     FooterComponent,
+    CommonModule,
   ],
   templateUrl: './menu.component.html',
 })
 export class MenuComponent implements AfterViewInit {
   @ViewChild('snav') sidenav!: MatSidenav;
+  @HostBinding('class.is-mobile') isMobile: boolean = false;
+
+  public document = inject(DOCUMENT);
+  public router = inject(Router);
+  isSidenavOpen = signal(false);
 
   public ngAfterViewInit(): void {
-    this.sidenav.openedChange.subscribe((opened: boolean) => {
-      if (opened) {
-        document.body.classList.add('no-scroll');
-      } else {
-        document.body.classList.remove('no-scroll');
-      }
-    });
+    if (typeof document !== 'undefined') {
+      this.sidenav.openedChange.subscribe((opened: boolean) => {
+        if (opened) {
+          document.body.classList.add('no-scroll');
+        } else {
+          document.body.classList.remove('no-scroll');
+        }
+      });
+    }
+  }
+
+  public ngOnInit() {
+    this.checkScreenSize();
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', () => this.checkScreenSize());
+    }
+  }
+
+  public toggleSidenav(isOpen: boolean): void {
+    this.isSidenavOpen.set(isOpen);
+  }
+
+  public checkScreenSize() {
+    if (typeof window !== 'undefined') {
+      this.isMobile = window.innerWidth <= 768;
+    }
+  }
+
+  public navigateTo(route: string): void {
+    this.router.navigate([route]);
+    this.isSidenavOpen.set(false);
+  }
+
+  public isActive(route: string): boolean {
+    return this.router.url === route;
   }
 }

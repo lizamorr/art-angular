@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --mat-toolbar-container-text-color: black;
+}
+
 html,
 body {
   height: 100%;
@@ -81,4 +85,23 @@ mat-sidenav {
 
 .no-scroll {
   overflow: hidden;
+}
+
+.mdc-list-item__content,
+.mat-toolbar .mat-mdc-button-base.mat-mdc-button-base.mat-unthemed {
+  color: black !important;
+}
+
+:host {
+  &.is-mobile .menu-container {
+    display: block;
+  }
+
+  .menu-container {
+    display: none;
+  }
+}
+
+.mat-button-focus-overlay {
+  background-color: #f1f5f9 !important;
 }

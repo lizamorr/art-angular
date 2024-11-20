@@ -1,4 +1,7 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import {
+  CommonModule,
+  NgOptimizedImage,
+} from '@angular/common';
 import {
   Component,
   computed,
@@ -10,9 +13,11 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { Meta } from '@angular/platform-browser';
 
-import { ImageCarouselComponent } from './image-carousel/image-carousel.component';
+import {
+  ImageCarouselComponent,
+} from './image-carousel/image-carousel.component';
 import { imageGroups } from './image-groups';
-import { TypeToggleComponent } from './type-toggle.component';
+import { TypeToggleComponent } from './type-toggle/type-toggle.component';
 
 type SelectedType =
   | 'isDrawingSelected'

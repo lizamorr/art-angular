@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    document?.body?.classList.add('no-scroll');
+    if (typeof document !== 'undefined') {
+      document?.body?.classList.add('no-scroll');
+    }
   }
 }

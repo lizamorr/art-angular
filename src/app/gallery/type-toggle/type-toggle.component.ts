@@ -10,16 +10,7 @@ import {
   selector: 'app-gallery-type-toggle',
   standalone: true,
   imports: [CommonModule],
-  template: ` <button
-    class="cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
-    [ngClass]="{
-      'underline underline-offset-8': isSelected(),
-      'no-underline': !isSelected()
-    }"
-    (click)="handleClick($event)"
-  >
-    {{ label() }}
-  </button>`,
+  templateUrl: './type-toggle.component.html',
 })
 export class TypeToggleComponent {
   @Output() onClickEvent = new EventEmitter<any>();

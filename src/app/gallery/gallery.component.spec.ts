@@ -9,7 +9,7 @@ import { GalleryComponent } from './gallery.component';
 import {
   ImageCarouselComponent,
 } from './image-carousel/image-carousel.component';
-import { TypeToggleComponent } from './type-toggle.component';
+import { TypeToggleComponent } from './type-toggle/type-toggle.component';
 
 describe('GalleryComponent', () => {
   let component: GalleryComponent;
