@@ -5,17 +5,14 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import {
-  Component,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './about.component.html',
   animations: [
     trigger('fadeInLeft', [
