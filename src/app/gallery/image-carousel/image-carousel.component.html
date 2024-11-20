@@ -35,6 +35,7 @@
       class="w-full text-center tracking-wider mt-2 text-md md:text-xl"
       [ngStyle]="{ 'max-width': currentImage().originalWidth + 'px' }"
       [attr.data-cy]="'img-carousel-desc--' + index()"
+      [@fadeIn]
     >
       {{ currentImage().desc }}
     </p>

@@ -1,4 +1,11 @@
 import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import {
   CommonModule,
   NgOptimizedImage,
 } from '@angular/common';
@@ -36,6 +43,12 @@ type ActiveFilter = 'drawing' | 'painting' | 'digital' | 'misc' | 'all';
     TypeToggleComponent,
     ImageCarouselComponent,
     NgOptimizedImage,
+  ],
+  animations: [
+    trigger('fadeIn', [
+      state('void', style({ opacity: 0 })),
+      transition('void => *', [animate('300ms ease-in')]),
+    ]),
   ],
   templateUrl: './gallery.component.html',
 })

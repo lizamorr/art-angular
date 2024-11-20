@@ -1,3 +1,10 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import {
   Component,
@@ -28,6 +35,12 @@ import { environment } from '../../environments/environment';
     MatIconModule,
     ReactiveFormsModule,
     MatButtonModule,
+  ],
+  animations: [
+    trigger('fadeIn', [
+      state('void', style({ opacity: 0 })),
+      transition('void => *', [animate('300ms ease-in')]),
+    ]),
   ],
   templateUrl: './contact.component.html',
 })

@@ -16,6 +16,7 @@
 
   <div
     class="fixed h-14 md:h-20 top-12 z-40 left-0 !bg-white bg-opacity-90 text-md md:text-2xl flex space-x-4 md:space-x-20 justify-between px-6 md:justify-center items-center w-full tracking-wider pt-3"
+    [@fadeIn]
   >
     <app-gallery-type-toggle
       label="Drawings"
@@ -74,6 +75,7 @@
           class="text-md md:text-xl w-full text-center tracking-wider mt-2"
           [ngStyle]="{ 'max-width': group[0].originalWidth + 'px' }"
           [attr.data-cy]="'gallery-img-desc--' + index"
+          [@fadeIn]
         >
           {{ group[0].desc }}
         </p>

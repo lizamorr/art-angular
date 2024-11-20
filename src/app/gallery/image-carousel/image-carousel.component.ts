@@ -1,5 +1,21 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, computed, inject, input, signal } from '@angular/core';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import {
+  CommonModule,
+  DOCUMENT,
+} from '@angular/common';
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  signal,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -7,6 +23,12 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-gallery-image-carousel',
   standalone: true,
   imports: [CommonModule, MatIconModule, MatButtonModule],
+  animations: [
+    trigger('fadeIn', [
+      state('void', style({ opacity: 0 })),
+      transition('void => *', [animate('300ms ease-in')]),
+    ]),
+  ],
   templateUrl: './image-carousel.component.html',
 })
 export class ImageCarouselComponent {
