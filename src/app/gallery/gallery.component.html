@@ -61,7 +61,6 @@
           [height]="200"
           [attr.data-cy]="'gallery-img--' + index"
           priority
-          placeholder="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
         />} @else {<img
           [ngSrc]="group[0].uri"
           [attr.alt]="group[0].originalAlt"
@@ -69,7 +68,6 @@
           [width]="group[0].originalWidth"
           [height]="200"
           [attr.data-cy]="'gallery-img--' + index"
-          placeholder="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
         />}
         <p
           class="text-md md:text-xl w-full text-center tracking-wider mt-2"
