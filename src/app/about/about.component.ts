@@ -1,4 +1,15 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import {
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 
 @Component({
@@ -6,6 +17,21 @@ import { Meta } from '@angular/platform-browser';
   standalone: true,
   imports: [],
   templateUrl: './about.component.html',
+  animations: [
+    trigger('fadeInLeft', [
+      state('void', style({ opacity: 0, transform: 'translateX(-100%)' })),
+      transition('void => *', [
+        animate(
+          '500ms ease-in-out',
+          style({ opacity: 1, transform: 'translateX(0)' })
+        ),
+      ]),
+    ]),
+    trigger('fadeIn', [
+      state('void', style({ opacity: 0 })),
+      transition('void => *', [animate('300ms ease-in')]),
+    ]),
+  ],
 })
 export class AboutComponent implements OnInit {
   public metaService = inject(Meta);
