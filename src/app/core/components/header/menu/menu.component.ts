@@ -1,7 +1,5 @@
-import {
-  CommonModule,
-  DOCUMENT,
-} from '@angular/common';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   Component,
   HostBinding,
@@ -15,10 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {
-  Router,
-  RouterLink,
-} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { FooterComponent } from '../../footer/footer.component';
 
@@ -39,17 +34,19 @@ import { FooterComponent } from '../../footer/footer.component';
   templateUrl: './menu.component.html',
 })
 export class MenuComponent implements OnDestroy {
-  @HostBinding('class.is-mobile') isMobile: boolean = false;
+  @HostBinding('class.is-mobile') isMobile = signal(true);
 
   public document = inject(DOCUMENT);
   public router = inject(Router);
   public isSidenavOpen = signal(false);
+  public breakpointObserver = inject(BreakpointObserver);
 
-  public ngOnInit() {
-    this.checkScreenSize();
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', () => this.checkScreenSize());
-    }
+  ngOnInit() {
+    this.breakpointObserver
+      .observe([Breakpoints.Handset])
+      .subscribe((result) => {
+        this.isMobile.set(result.matches);
+      });
   }
 
   public ngOnDestroy(): void {
@@ -64,12 +61,6 @@ export class MenuComponent implements OnDestroy {
       document.body.classList.add('no-scroll');
     } else {
       document.body.classList.remove('no-scroll');
-    }
-  }
-
-  public checkScreenSize() {
-    if (typeof window !== 'undefined') {
-      this.isMobile = window.innerWidth <= 768;
     }
   }
 
